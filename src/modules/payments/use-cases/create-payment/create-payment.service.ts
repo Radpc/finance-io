@@ -38,6 +38,7 @@ export class CreatePaymentService {
       createdBy: { connect: { id: requesterId } },
       category: { connect: { id: createPaymentDTO.categoryId } },
       status: createPaymentDTO.status,
+      paymentMethod: createPaymentDTO.paymentMethod,
       value: createPaymentDTO.value,
       observation: createPaymentDTO.observation,
       tags: {

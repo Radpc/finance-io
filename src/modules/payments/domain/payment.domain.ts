@@ -7,12 +7,20 @@ export enum PaymentStatus {
   Paid = 'Paid',
 }
 
+export enum PaymentMethod {
+  Credit = 'Credit',
+  Debit = 'Debit',
+  Cash = 'Cash',
+  Pix = 'Pix',
+}
+
 interface IProps {
   id: number;
   description: string;
   value: number;
   observation?: string;
   status: PaymentStatus;
+  paymentMethod: PaymentMethod;
   createdAt: Date;
   updatedAt: Date;
 
@@ -31,6 +39,7 @@ export class PaymentDomain {
   value: number;
   observation?: string;
   status: PaymentStatus;
+  paymentMethod: PaymentMethod;
   createdAt: Date;
   updatedAt: Date;
 
@@ -43,6 +52,7 @@ export class PaymentDomain {
     this.value = props.value;
     this.observation = props.observation;
     this.status = props.status;
+    this.paymentMethod = props.paymentMethod;
     this.createdAt = props.createdAt;
     this.updatedAt = props.updatedAt;
 
@@ -56,6 +66,7 @@ export class PaymentDomain {
       description: paymentRaw.description,
       observation: paymentRaw.observation || undefined,
       status: (paymentRaw.status as PaymentStatus) || undefined,
+      paymentMethod: (paymentRaw.paymentMethod as PaymentMethod) || undefined,
       value: paymentRaw.value,
       createdAt: paymentRaw.createdAt,
       updatedAt: paymentRaw.updatedAt,
@@ -73,6 +84,7 @@ export class PaymentDomain {
       description: this.description,
       observation: this.observation,
       status: this.status,
+      paymentMethod: this.paymentMethod,
       value: this.value,
       createdAt: this.createdAt.toISOString(),
       updatedAt: this.updatedAt.toISOString(),

@@ -32,6 +32,7 @@ CREATE TABLE "Payment" (
     "value" REAL NOT NULL,
     "observation" TEXT,
     "status" TEXT NOT NULL,
+    "paymentMethod" TEXT NOT NULL,
     "userId" INTEGER NOT NULL,
     "categoryId" INTEGER NOT NULL,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,

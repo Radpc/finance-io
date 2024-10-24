@@ -7,7 +7,7 @@ import {
   IsOptional,
   IsString,
 } from 'class-validator';
-import { PaymentStatus } from '../domain/payment.domain';
+import { PaymentMethod, PaymentStatus } from '../domain/payment.domain';
 import { Transform } from 'class-transformer';
 
 export class CreatePaymentDTO {
@@ -35,6 +35,11 @@ export class CreatePaymentDTO {
   @IsEnum(PaymentStatus)
   @ApiProperty({ enum: PaymentStatus, example: PaymentStatus.Paid })
   status: PaymentStatus;
+
+  @IsNotEmpty()
+  @IsEnum(PaymentMethod)
+  @ApiProperty({ enum: PaymentMethod, example: PaymentMethod.Cash })
+  paymentMethod: PaymentMethod;
 
   @IsOptional()
   @IsNumber({}, { each: true })

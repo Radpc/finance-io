@@ -1,5 +1,5 @@
 import { CategoryDTO } from 'src/modules/category/dto/category.dto';
-import { PaymentStatus } from '../domain/payment.domain';
+import { PaymentMethod, PaymentStatus } from '../domain/payment.domain';
 import { TagDTO } from 'src/modules/tags/dto/tag.dto';
 
 interface IProps {
@@ -8,6 +8,7 @@ interface IProps {
   value: number;
   observation?: string;
   status: PaymentStatus;
+  paymentMethod: PaymentMethod;
   createdAt: string;
   updatedAt: string;
 
@@ -21,6 +22,7 @@ export class PaymentDTO {
   value: number;
   observation?: string;
   status: PaymentStatus;
+  paymentMethod: PaymentMethod;
   createdAt: string;
   updatedAt: string;
 
@@ -33,6 +35,7 @@ export class PaymentDTO {
     this.value = props.value;
     this.observation = props.observation;
     this.status = props.status;
+    this.paymentMethod = props.paymentMethod;
     this.createdAt = props.createdAt;
     this.updatedAt = props.updatedAt;
 
