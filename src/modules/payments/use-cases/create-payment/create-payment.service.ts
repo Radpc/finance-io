@@ -12,7 +12,7 @@ export class CreatePaymentService {
     private tagRepository: TagRepoService,
   ) {}
 
-  async execute(createPaymentDTO: CreatePaymentDTO) {
+  async execute(createPaymentDTO: CreatePaymentDTO, requesterId: number) {
     // Check category
     const category = await this.categoryRepository.getCategory({
       id: createPaymentDTO.categoryId,
@@ -35,6 +35,7 @@ export class CreatePaymentService {
 
     return this.paymentRepository.createPayment({
       description: createPaymentDTO.description,
+      createdBy: { connect: { id: requesterId } },
       category: { connect: { id: createPaymentDTO.categoryId } },
       status: createPaymentDTO.status,
       value: createPaymentDTO.value,

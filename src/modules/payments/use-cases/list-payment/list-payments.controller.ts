@@ -1,9 +1,10 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, Query, UseGuards } from '@nestjs/common';
 
 import { ControllerType } from 'src/types/response';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { ListPaymentsService } from './list-payments.service';
 import { GetPaymentsParams } from './list-payments.dto';
+import { UserGuard } from 'src/modules/jwt/user-jwt/user.guard';
 
 @Controller('payments')
 @ApiTags('Payment')
@@ -12,6 +13,8 @@ export class ListPaymentsController extends ControllerType {
     super();
   }
 
+  @UseGuards(UserGuard)
+  @ApiBearerAuth()
   @Get()
   async handle(@Query() query: GetPaymentsParams) {
     const { data, total } = await this.listPaymentsService.execute(query);

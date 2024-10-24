@@ -1,12 +1,23 @@
 import { PrismaClient } from '@prisma/client';
+import { hashSync } from 'bcryptjs';
 
 const prisma = new PrismaClient();
 async function main() {
-  await prisma.tag.upsert({
+  hashSync;
+
+  await prisma.user.upsert({
     where: { id: 1 },
-    update: {},
+    update: {
+      name: 'Admin',
+      email: 'admin@email.com',
+      password: hashSync('12345'),
+      role: 'admin',
+    },
     create: {
-      label: 'Feedback - API',
+      name: 'Admin',
+      email: 'admin@email.com',
+      password: hashSync('12345'),
+      role: 'admin',
     },
   });
 }

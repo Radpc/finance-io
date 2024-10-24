@@ -1,9 +1,10 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, Query, UseGuards } from '@nestjs/common';
 import { Type } from 'class-transformer';
 import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 import { ListCategoriesService } from './list-categories.service';
 import { ControllerType } from 'src/types/response';
-import { ApiProperty, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiProperty, ApiTags } from '@nestjs/swagger';
+import { UserGuard } from 'src/modules/jwt/user-jwt/user.guard';
 
 export class GetCategoriesParams {
   @IsNotEmpty()
@@ -31,6 +32,8 @@ export class ListCategoriesController extends ControllerType {
     super();
   }
 
+  @UseGuards(UserGuard)
+  @ApiBearerAuth()
   @Get()
   async handle(@Query() query: GetCategoriesParams) {
     return this.listCategoriesService.execute({
