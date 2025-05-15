@@ -9,6 +9,7 @@ interface IProps {
   observation?: string;
   status: PaymentStatus;
   paymentMethod: PaymentMethod;
+  paymentDate: string;
   createdAt: string;
   updatedAt: string;
 
@@ -23,6 +24,7 @@ export class PaymentDTO {
   observation?: string;
   status: PaymentStatus;
   paymentMethod: PaymentMethod;
+  paymentDate: string;
   createdAt: string;
   updatedAt: string;
 
@@ -36,6 +38,7 @@ export class PaymentDTO {
     this.observation = props.observation;
     this.status = props.status;
     this.paymentMethod = props.paymentMethod;
+    this.paymentDate = props.paymentDate;
     this.createdAt = props.createdAt;
     this.updatedAt = props.updatedAt;
 

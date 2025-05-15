@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {
   IsArray,
+  IsDateString,
   IsEnum,
   IsNotEmpty,
   IsNumber,
@@ -40,6 +41,11 @@ export class CreatePaymentDTO {
   @IsEnum(PaymentMethod)
   @ApiProperty({ enum: PaymentMethod, example: PaymentMethod.Cash })
   paymentMethod: PaymentMethod;
+
+  @IsOptional()
+  @IsDateString()
+  @ApiProperty({ example: new Date().toISOString() })
+  paymentDate: string;
 
   @IsOptional()
   @IsNumber({}, { each: true })

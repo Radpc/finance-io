@@ -21,6 +21,7 @@ interface IProps {
   observation?: string;
   status: PaymentStatus;
   paymentMethod: PaymentMethod;
+  paymentDate: Date;
   createdAt: Date;
   updatedAt: Date;
 
@@ -40,6 +41,7 @@ export class PaymentDomain {
   observation?: string;
   status: PaymentStatus;
   paymentMethod: PaymentMethod;
+  paymentDate: Date;
   createdAt: Date;
   updatedAt: Date;
 
@@ -52,6 +54,7 @@ export class PaymentDomain {
     this.value = props.value;
     this.observation = props.observation;
     this.status = props.status;
+    this.paymentDate = props.paymentDate;
     this.paymentMethod = props.paymentMethod;
     this.createdAt = props.createdAt;
     this.updatedAt = props.updatedAt;
@@ -68,6 +71,7 @@ export class PaymentDomain {
       status: (paymentRaw.status as PaymentStatus) || undefined,
       paymentMethod: (paymentRaw.paymentMethod as PaymentMethod) || undefined,
       value: paymentRaw.value,
+      paymentDate: paymentRaw.paymentDate,
       createdAt: paymentRaw.createdAt,
       updatedAt: paymentRaw.updatedAt,
       category: paymentRaw.category
@@ -86,6 +90,7 @@ export class PaymentDomain {
       status: this.status,
       paymentMethod: this.paymentMethod,
       value: this.value,
+      paymentDate: this.paymentDate.toISOString(),
       createdAt: this.createdAt.toISOString(),
       updatedAt: this.updatedAt.toISOString(),
       category: this.category?.toDTO(),
