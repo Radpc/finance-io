@@ -14,8 +14,9 @@ export class ListCategoriesService {
   execute(query: FindAllInput) {
     const take = query.pageSize;
     const skip = take * (query.page - 1);
+
     return this.categoryRepository.categories({
-      where: { label: { contains: query.label } },
+      where: query.label ? { label: { contains: query.label } } : undefined,
       skip,
       take,
     });

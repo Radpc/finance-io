@@ -1,19 +1,16 @@
 import { Body, Controller, Post, Req, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { ControllerType } from 'src/types/response';
 import { CreatePaymentService } from './create-payment.service';
 import { CreatePaymentDTO } from '../../dto/create-payment.dto';
 import { UserGuard, UserRequest } from 'src/modules/jwt/user-jwt/user.guard';
 
+@UseGuards(UserGuard)
+@ApiBearerAuth()
 @Controller('payments')
 @ApiTags('Payment')
-export class CreatePaymentController extends ControllerType {
-  constructor(private readonly createPaymentService: CreatePaymentService) {
-    super();
-  }
+export class CreatePaymentController {
+  constructor(private readonly createPaymentService: CreatePaymentService) {}
 
-  @UseGuards(UserGuard)
-  @ApiBearerAuth()
   @Post()
   async handle(
     @Req() request: UserRequest,

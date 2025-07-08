@@ -1,6 +1,5 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { ApiProperty, ApiTags } from '@nestjs/swagger';
-import { ControllerType } from 'src/types/response';
 import { LoginService } from './login.service';
 import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
 
@@ -18,10 +17,8 @@ class LoginDTO {
 
 @Controller()
 @ApiTags('User')
-export class LoginController extends ControllerType {
-  constructor(private readonly loginService: LoginService) {
-    super();
-  }
+export class LoginController {
+  constructor(private readonly loginService: LoginService) {}
 
   @Post('/login')
   async handle(@Body() { email, password }: LoginDTO) {
